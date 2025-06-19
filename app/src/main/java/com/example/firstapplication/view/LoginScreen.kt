@@ -233,6 +233,11 @@ fun LoginScreen(
     }
 }
 
+@Composable
+fun logDemo() {
+    println("Demo")
+}
+
 @Preview(showBackground = true)
 @Composable
 fun FirstScreenPreview() {
