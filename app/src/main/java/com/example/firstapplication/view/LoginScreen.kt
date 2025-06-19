@@ -1,6 +1,5 @@
 package com.example.firstapplication.view
 
-import android.widget.Toast
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.*
@@ -22,17 +21,17 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 @Composable
-fun FirstScreen(loginViewModel: LoginViewModel = viewModel()) {
-
+fun LoginScreen(
+    loginViewModel: LoginViewModel = viewModel(),
+    onLoginSuccess: () -> Unit
+) {
     val context = LocalContext.current
 
     LaunchedEffect(loginViewModel.loginSuccess) {
         if (loginViewModel.loginSuccess) {
-            Toast.makeText(context, "Login Successfully", Toast.LENGTH_SHORT).show()
-            loginViewModel.loginSuccess = false
+            onLoginSuccess()
         }
     }
-
 
     Column(
         modifier = Modifier
@@ -237,5 +236,5 @@ fun FirstScreen(loginViewModel: LoginViewModel = viewModel()) {
 @Preview(showBackground = true)
 @Composable
 fun FirstScreenPreview() {
-    FirstScreen()
+    LoginScreen(onLoginSuccess = {})
 }
